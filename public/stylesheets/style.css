@@ -17,6 +17,10 @@ a {
 	margin-bottom: 1px;
 	color: black;
 }
+img{
+	width: 50%;
+	height: 50%;
+}
 section > div {
 	padding: 20px;
 }
