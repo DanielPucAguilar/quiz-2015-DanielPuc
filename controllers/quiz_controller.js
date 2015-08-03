@@ -59,3 +59,28 @@ exports.index = function(req,res){
 exports.author = function(req,res){
     res.render('author',{autor:'Daniel Puc Aguilar',errors: []});
 };
+
+//new
+exports.new = function(req,res){
+	var quiz = models.Quiz.build(
+	{
+		pregunta: "Pregunta",resultado: "Respuesta"
+	});
+	res.render('quizes/new',{quiz: quiz});
+};
+//create
+exports.create = function(req,res){
+	var quiz = models.Quiz.build(req.body.quiz);
+
+	quiz
+	.validate()
+	.then(
+		function(err){
+			if (err){
+				res.render('quizes/new',{quiz:quiz, errors: err.errors});
+			}else{
+				quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
+		res.reditect('/quizes')})
+			}
+		});
+};
